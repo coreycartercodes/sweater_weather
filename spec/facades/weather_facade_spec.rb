@@ -1,42 +1,15 @@
 require 'rails_helper'
 
-describe 'Weather API' do
-  it 'sends weather details' do
-    # map_response = File.read('spec/fixtures/denver_mapquest.json')
-    # stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAPQUEST_KEY']}&location=denver,co").
-    #      with(
-    #        headers: {
-    #    	  'Accept'=>'*/*',
-    #    	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-    #    	  'User-Agent'=>'Faraday v1.1.0'
-    #        }).
-    #      to_return(status: 200, body: map_response, headers: {})
+describe WeatherFacade do
+  it "returns forecast PORO" do
+    forecast = WeatherFacade.get_weather("aspen,co")
+    expect(forecast).to be_a(Forecast)
+    expect(forecast.current_weather).to be_a(Hash)
+    expect(forecast.daily_weather).to be_a(Array)
+    expect(forecast.hourly_weather).to be_a(Array)
+    expect(forecast.id).to eq("null")
 
-    # forecast_response = File.read('spec/fixtures/denver_forecast.json')
-    # stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=#{ENV['WEATHER_KEY']}&exclude=minutely,alerts&lat=39.738453&lon=-104.984853&units=imperial").
-    # with(
-    #   headers: {
-    # 'Accept'=>'*/*',
-    # 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-    # 'User-Agent'=>'Faraday v1.1.0'
-    #   }).
-    # to_return(status: 200, body: forecast_response, headers: {})
-
-    get '/api/v1/forecast?location=denver,co'
-    
-    expect(response).to be_successful
-    
-    forecast = JSON.parse(response.body, symbolize_names: true)
-    
-    
-    expect(forecast).to have_key(:data)
-    expect(forecast[:data]).to be_a(Hash)
-    expect(forecast[:data][:id]).to eq("null")
-    expect(forecast[:data][:type]).to eq('forecast')
-    expect(forecast[:data][:attributes]).to be_a(Hash)
-    expect(forecast[:data][:attributes].count).to eq(3)
-
-    current = forecast[:data][:attributes][:current_weather]
+    current = forecast.current_weather
     expect(current).to have_key(:datetime)
     expect(current).to have_key(:sunrise)
     expect(current).to have_key(:sunset)
@@ -50,9 +23,9 @@ describe 'Weather API' do
     expect(current).to_not have_key(:pressure)
     expect(current).to_not have_key(:clouds)
     expect(current).to_not have_key(:dt)
-    expect(current[:datetime]).to be_a(String)
-    expect(current[:sunrise]).to be_a(String)
-    expect(current[:sunset]).to be_a(String)
+    expect(current[:datetime]).to be_a(Time)
+    expect(current[:sunrise]).to be_a(Time)
+    expect(current[:sunset]).to be_a(Time)
     expect(current[:temperature]).to be_a(Float)
     expect(current[:feels_like]).to be_a(Float)
     expect(current[:humidity]).to be_a(Float)
@@ -61,7 +34,7 @@ describe 'Weather API' do
     expect(current[:conditions]).to be_a(String)
     expect(current[:icon]).to be_a(String)
     
-    hourly = forecast[:data][:attributes][:hourly_weather]
+    hourly = forecast.hourly_weather
     hourly.each do |hour|
       expect(hour).to have_key(:time)
       expect(hour).to have_key(:temperature)
@@ -80,7 +53,7 @@ describe 'Weather API' do
       expect(hour[:icon]).to be_a(String)
     end
     
-    daily = forecast[:data][:attributes][:daily_weather]
+    daily = forecast.daily_weather
     daily.each do |day|
       expect(day).to have_key(:datetime)
       expect(day).to have_key(:sunrise)
@@ -93,13 +66,15 @@ describe 'Weather API' do
       expect(day).to_not have_key(:dt)
       expect(day).to_not have_key(:pressure)
       expect(day).to_not have_key(:humidity)
-      expect(day[:datetime]).to be_a(String)
-      expect(day[:sunrise]).to be_a(String)
-      expect(day[:sunset]).to be_a(String)
+      expect(day[:datetime]).to be_a(Time)
+      expect(day[:sunrise]).to be_a(Time)
+      expect(day[:sunset]).to be_a(Time)
       expect(day[:max_temp]).to be_a(Float)
       expect(day[:min_temp]).to be_a(Float)
       expect(day[:conditions]).to be_a(String)
       expect(day[:icon]).to be_a(String)
     end
+
+
   end
 end

@@ -2,7 +2,49 @@ require 'rails_helper'
 
 describe 'Hiking API' do
   it 'sends trail location and weather details' do
-    
+    #### Started to implement webmock, realized that it would require 10+ stubs.
+
+    # map_response = File.read('spec/fixtures/denver_mapquest.json')
+    # stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAPQUEST_KEY']}&location=denver,co").
+    #      with(
+    #        headers: {
+    #    	  'Accept'=>'*/*',
+    #    	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+    #    	  'User-Agent'=>'Faraday v1.1.0'
+    #        }).
+    #      to_return(status: 200, body: map_response, headers: {})
+
+    # hiking_response = File.read('spec/fixtures/denver_hike.json')
+    # stub_request(:get, "https://www.hikingproject.com/data/get-trails?key=#{ENV['HIKING_KEY']}&lat=39.738453&lon=-104.984853").
+    # with(
+    #   headers: {
+    # 'Accept'=>'*/*',
+    # 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+    # 'User-Agent'=>'Faraday v1.1.0'
+    #   }).
+    # to_return(status: 200, body: hiking_response, headers: {})
+
+    # weather_response = File.read('spec/fixtures/denver_forecast.json')
+    # stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=b62be7371b4b4fd9e257a1863f480f8a&exclude=minutely,alerts&lat=39.738453&lon=-104.984853&units=imperial").
+    #      with(
+    #        headers: {
+    #    	  'Accept'=>'*/*',
+    #    	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+    #    	  'User-Agent'=>'Faraday v1.1.0'
+    #        }).
+    #      to_return(status: 200, body: weather_response, headers: {})
+
+    # distance_response = File.read('spec/fixtures/denver_distance.json')
+
+    # stub_request(:get, "http://www.mapquestapi.com/directions/v2/route?from=denver,co&key=wvQ56c6eH2gN0g1cp7OmILdnACgsHuIJ&to=Superior,%20Colorado").
+    # with(
+    #   headers: {
+    # 'Accept'=>'*/*',
+    # 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+    # 'User-Agent'=>'Faraday v1.1.0'
+    #   }).
+    # to_return(status: 200, body: distance_response, headers: {})
+
     get '/api/v1/trails?location=denver,co'
     expect(response).to be_successful
     
