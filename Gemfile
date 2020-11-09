@@ -38,7 +38,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 4.0'
-  # gem 'webmock'
+  gem 'webmock'
 end
 
 group :development do
