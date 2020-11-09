@@ -9,8 +9,8 @@ describe LocationService do
     expect(location[:lng]).to be_a(Float)
   end
 
-  it 'sends distance between two locations' do
-    location = LocationService.get_distance("pittsburgh,pa", "denver,co")
-    expect(location).to be_a(Float)
-  end
+  # it 'sends distance between two locations' do
+  #   location = LocationService.get_distance("pittsburgh,pa", "denver,co")
+  #   expect(location).to be_a(Float)
+  # end
 end
