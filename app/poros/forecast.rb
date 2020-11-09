@@ -5,7 +5,7 @@ class Forecast
                 :hourly_weather
   
     def initialize(weather_data)
-      @id = nil
+      @id = "null"
       @current_weather = current(weather_data[:current])
       @daily_weather = daily(weather_data[:daily][0..4])
       @hourly_weather = hourly(weather_data[:hourly][0..7])
