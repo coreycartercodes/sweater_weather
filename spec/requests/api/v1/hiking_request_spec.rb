@@ -7,9 +7,7 @@ describe 'Hiking API' do
     expect(response).to be_successful
     
     trails = JSON.parse(response.body, symbolize_names: true)
-    
-    binding.pry
-    
+        
     expect(trails).to have_key(:data)
     expect(trails[:data]).to be_a(Hash)
     expect(trails[:data][:id]).to eq("null")
@@ -22,7 +20,7 @@ describe 'Hiking API' do
     expect(trails[:data][:attributes][:forecast]).to have_key(:summary)
     expect(trails[:data][:attributes][:forecast][:summary]).to be_a(String)
     expect(trails[:data][:attributes][:forecast]).to have_key(:temperature)
-    expect(trails[:data][:attributes][:forecast][:temperature]).to be_a(Float)
+    expect(trails[:data][:attributes][:forecast][:temperature]).to be_a(String)
     expect(trails[:data][:attributes]).to have_key(:trails)
     expect(trails[:data][:attributes][:trails]).to be_an(Array)
 
