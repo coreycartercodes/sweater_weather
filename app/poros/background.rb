@@ -10,6 +10,7 @@ class Background
                 {
                   source: "images.unsplash.com",
                   author: data[:user][:name],
+                  profile: data[:user][:links][:self],
                   logo: "https://unsplash-assets.imgix.net/marketing/press-header.jpg"
                 }
               }
