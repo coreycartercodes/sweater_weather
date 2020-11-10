@@ -10,9 +10,15 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # def find
-  #   render json: UserSerializer.new(User.find_by(params[:email]))
-  # end
+  def login
+    user_params = JSON.parse(request.env['RAW_POST_DATA'], symbolize_names: true)
+    user = User.find_by(email: user_params[:email])
+    if user && user.authenticate(user_params[:password])
+      render json: UserSerializer.new(user), status: 200
+    else
+      render json: {errors: 'Incorrect email/password combination'}, status: 404
+    end
+  end
 
   private
   def user_params

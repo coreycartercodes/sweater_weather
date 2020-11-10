@@ -4,5 +4,4 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :api_key, uniqueness: true, presence: true
   has_secure_password
-
 end
