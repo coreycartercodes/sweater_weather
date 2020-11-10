@@ -77,5 +77,5 @@ end
 #   config.filter_sensitive_data('<MAPQUEST_KEY>') { ENV['MAPQUEST_KEY'] }
 #   config.filter_sensitive_data('<WEATHER_KEY>') { ENV['WEATHER_KEY'] }
 #   config.filter_sensitive_data('<MAPQUEST_KEY>') { ENV['MAPQUEST_KEY'] }
-#   config.filter_sensitive_data('<FLIKR_KEY_KEY>') { ENV['FLIKR_KEY_KEY'] }
+#   config.filter_sensitive_data('<IMAGE_KEY>') { ENV['IMAGE_KEY'] }
 # end
