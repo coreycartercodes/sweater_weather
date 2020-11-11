@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ImageService do
-  it 'sends background details' do
+  it 'sends background details', :vcr do
     response = ImageService.pic("pittsburgh,pa")
     expect(response).to have_key(:id)
     expect(response[:id]).to be_a(String)

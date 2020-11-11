@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'API' do
-  it 'completes new user request/response' do
+  it 'completes new user request/response', :vcr do
 
     user_params = {
       "email": "whatever@aol.com",
@@ -26,7 +26,7 @@ describe 'API' do
     expect(user[:attributes]).to_not have_key(:password_digest)
   end
 
-  it 'sends errors from new user request' do
+  it 'sends errors from new user request', :vcr do
 
     user_params = {
       "email": "",
@@ -43,7 +43,7 @@ describe 'API' do
     expect(resp[:errors]).to eq("Email can't be blank")
   end
 
-  it 'completes login request' do 
+  it 'completes login request', :vcr do 
     user = User.create!({email: "whatever@aol.com",
       password: "password",
       api_key: "1543qwretg3541",
@@ -71,7 +71,7 @@ describe 'API' do
     expect(user[:attributes]).to_not have_key(:password_digest)
     end
 
-  it 'sends errors for login request' do 
+  it 'sends errors for login request', :vcr do 
     user = User.create!({email: "whatever@aol.com",
       password: "password",
       api_key: "1543qwretg3541",

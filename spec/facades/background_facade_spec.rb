@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe BackgroundFacade do
-  it "returns Background PORO" do
+  it "returns Background PORO", :vcr do
     background = BackgroundFacade.get_pic("aspen,co")
     expect(background).to be_a(Background)
     expect(background.image).to be_a(Hash)
