@@ -52,15 +52,20 @@ IMAGE_KEY: <your_key_here>
 #### Running Locally
 1. Please use (LOCAL) ```http://localhost:3000```
 1. Run `rails s` from command line and use a service such as [Postman](https://www.postman.com/) to visit the following example endpoints:
-`GET /api/v1/forecast?location=denver,co
+```
+GET /api/v1/forecast?location=denver,co
 Content-Type: application/json
-Accept: application/json`
+Accept: application/json
+```
 
-`GET /api/v1/backgrounds?location=denver,co
+```
+GET /api/v1/backgrounds?location=denver,co
 Content-Type: application/json
-Accept: application/json`
+Accept: application/json
+```
 
-`POST /api/v1/users
+```
+POST /api/v1/users
 Content-Type: application/json
 Accept: application/json
 
@@ -68,18 +73,22 @@ Accept: application/json
   "email": "whatever@example.com",
   "password": "password",
   "password_confirmation": "password"
-}`
+}
+```
 
-`POST /api/v1/sessions
+```
+POST /api/v1/sessions
 Content-Type: application/json
 Accept: application/json
 
 {
   "email": "whatever@example.com",
   "password": "password"
-}`
+}
+```
 
-` POST /api/v1/road_trip
+```
+POST /api/v1/road_trip
 Content-Type: application/json
 Accept: application/json
 
@@ -89,7 +98,8 @@ body:
   "origin": "Denver,CO",
   "destination": "Pueblo,CO",
   "api_key": "jgn983hy48thw9begh98h4539h4"
-}`
+}
+```
 
 ## Next Steps
 - MORE TESTING... The calls were extensive and it would be nice to more thoroughly test when given more time
