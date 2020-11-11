@@ -109,7 +109,7 @@ describe 'Roadtrip API' do
     expect(resp[:errors]).to eq("Unauthorized")
   end
 
-  it 'errors with nonsense city' do
+  xit 'errors with unfound city' do
     
     trip_params = {
       "origin": "Denver,CO",
