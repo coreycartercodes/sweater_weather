@@ -106,3 +106,4 @@ body:
 - Encrypt API Keys
 - Create Session and data caching
 - Refactor using Rubocop
+- Fix issue with non-existent city returning item
