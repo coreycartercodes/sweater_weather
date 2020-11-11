@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class UserFacade
 
   def self.create(user_params)
@@ -8,6 +10,10 @@ class UserFacade
       password_confirmation: user_params[:password_confirmation]
     }
     User.create(user_data)
+  end
+
+  def self.find_api(api)
+    User.find_by(api_key: api)
   end
   
   private
