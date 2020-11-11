@@ -6,7 +6,7 @@ class Api::V1::TripsController < ApplicationController
     if user
       render json: TripSerializer.new(TripFacade.trip_info(trip_params[:origin], trip_params[:destination])), status: 201
     else
-      render json: {errors: "Unauthorized"}, status: 401
+      render json: {errors: 'Unauthorized'}, status: 401
     end
   end
 
