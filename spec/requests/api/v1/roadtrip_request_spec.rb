@@ -8,7 +8,7 @@ describe 'Roadtrip API' do
       password_confirmation: "password"})
     end
 
-  it 'Creates a new trip request' do
+  it 'Creates a new trip request', :vcr do
     
     trip_params = {
       "origin": "Denver,CO",
@@ -38,7 +38,7 @@ describe 'Roadtrip API' do
     expect(trip[:attributes][:weather_at_eta]).to have_key(:conditions)
   end
 
-  it 'shows impossible trip' do
+  it 'shows impossible trip', :vcr do
     
     trip_params = {
       "origin": "Denver,CO",
@@ -64,7 +64,7 @@ describe 'Roadtrip API' do
     expect(trip[:attributes]).to have_key(:travel_time)
     expect(trip[:attributes][:travel_time]).to eq('Impossible Route!')
   end
-  it 'shows multi-day trip' do
+  it 'shows multi-day trip', :vcr do
     
     trip_params = {
       "origin": "Denver,CO",
@@ -93,7 +93,7 @@ describe 'Roadtrip API' do
     expect(trip[:attributes][:weather_at_eta]).to have_key(:conditions)
   end
 
-  it 'shows unauthorized user' do
+  it 'shows unauthorized user', :vcr do
     
     trip_params = {
       "origin": "Denver,CO",
@@ -109,19 +109,19 @@ describe 'Roadtrip API' do
     expect(resp[:errors]).to eq("Unauthorized")
   end
 
-  xit 'errors with unfound city' do
+  # xit 'errors with unfound city' do
     
-    trip_params = {
-      "origin": "Denver,CO",
-      "destination": "aslfjsadf,AK",
-      "api_key": "1543qwretg3541"
-    }
-    headers = { 'CONTENT_TYPE' => 'application/json' }
+  #   trip_params = {
+  #     "origin": "Denver,CO",
+  #     "destination": "aslfjsadf,AK",
+  #     "api_key": "1543qwretg3541"
+  #   }
+  #   headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post '/api/v1/road_trip', headers: headers, params: JSON.generate(trip_params)
-    binding.pry
-    expect(response).to be_successful
-    expect(response.status).to eq(201)
-  end
+  #   post '/api/v1/road_trip', headers: headers, params: JSON.generate(trip_params)
+  #   binding.pry
+  #   expect(response).to be_successful
+  #   expect(response.status).to eq(201)
+  # end
   
 end

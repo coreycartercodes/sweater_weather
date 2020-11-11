@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe WeatherService do
-  it 'sends weather details' do
+  it 'sends weather details', :vcr do
     response = WeatherService.forecast("39.738453", "-104.984853")
     expect(response[:current]).to have_key(:dt)
     expect(response[:current]).to have_key(:sunrise)

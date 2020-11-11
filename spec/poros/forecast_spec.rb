@@ -506,5 +506,5 @@ describe Forecast do
       expect(day[:conditions]).to be_a(String)
       expect(day[:icon]).to be_a(String)
     end
-  end
+end
 end

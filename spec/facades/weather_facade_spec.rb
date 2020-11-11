@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe WeatherFacade do
-  it "returns forecast PORO" do
+  it "returns forecast PORO", :vcr do
     forecast = WeatherFacade.get_weather("aspen,co")
     expect(forecast).to be_a(Forecast)
     expect(forecast.current_weather).to be_a(Hash)

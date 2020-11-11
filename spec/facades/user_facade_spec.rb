@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UserFacade do
-  it "returns user PORO from create" do
+  it "returns user PORO from create", :vcr do
     user_params = {
       "email": "whatever@aol.com",
       "password": "password",
@@ -14,7 +14,7 @@ describe UserFacade do
     expect(user.api_key).to be_a(String)
   end
 
-  it "returns errors for create" do
+  it "returns errors for create", :vcr do
     user_params = {
       "email": "",
       "password": "password",

@@ -64,6 +64,6 @@ class Forecast
     return "Southwest" if (195 < degrees && degrees <= 255)
     return "West" if (255 < degrees && degrees <= 285)
     return "Northwest" if (285 < degrees && degrees <= 345)
-    "North"
+    return "North"
   end
 end

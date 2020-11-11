@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Image API' do
-  it 'sends Image details' do
+  it 'sends Image details', :vcr do
 
     get '/api/v1/backgrounds?location=denver,co'
     expect(response).to be_successful
